@@ -23,12 +23,18 @@ You can add cities to favorites and check them without internet.
    git clone https://github.com/jdelriocanosa/weather.git
    ```
 
-2. Install NPM packages
+2. Access the folder
+
+  ```sh
+   cd weather
+   ```
+
+3. Install NPM packages
 ```sh
    npm install
    ```
 
-3. Compiles and hot-reloads for development
+4. Compiles and hot-reloads for development
 ```sh
    npm run serve
    ```
