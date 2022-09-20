@@ -172,6 +172,7 @@ export default {
 .next-days {
   background: #ffffff61;
   border-radius: 10px;
+  margin-top: 12px;
 }
 .next-days-individual {
   display: flex;
