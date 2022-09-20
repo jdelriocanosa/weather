@@ -20,34 +20,66 @@
         cols="2"
         class="product"
       >
-        <img
-          class="weather_board__card__background_image"
-          :src="
-            require(`../../assets/weather/${listFavorite.weather[0].main.toLowerCase()}.jpg`)
-          "
-        />
-        <p style="background-image: url('img_girl.jpg');"></p>
-        <span
-          @click="deletecity(listFavorite)"
-          class="material-symbols-outlined delete-icon"
-        >
-          delete
-        </span>
-        <h2 class="title5">{{ listFavorite.name }}</h2>
-        <img
-          class="city-icon"
-          :src="
-            'http://openweathermap.org/img/wn/' +
-              listFavorite.weather[0].icon +
-              '@2x.png'
-          "
-          alt=""
-        />
-        <div class="temperature">
-          <span class="material-symbols-outlined thermometer">
-            thermometer
+        <div class="weather-actual">
+          <img
+            class="weather_board__card__background_image"
+            :src="
+              require(`../../assets/weather/${listFavorite.responseWeather.weather[0].main.toLowerCase()}.jpg`)
+            "
+          />
+          <p style="background-image: url('img_girl.jpg');"></p>
+          <span
+            @click="deletecity(listFavorite.responseWeather)"
+            class="material-symbols-outlined delete-icon"
+          >
+            delete
           </span>
-          <h2 class="title5">{{ Math.round(listFavorite.main.temp) }}ºC</h2>
+          <h2 class="title5">{{ listFavorite.responseWeather.name }}</h2>
+          <img
+            class="city-icon"
+            :src="
+              'http://openweathermap.org/img/wn/' +
+                listFavorite.responseWeather.weather[0].icon +
+                '@2x.png'
+            "
+            alt=""
+          />
+          <div class="temperature">
+            <span class="material-symbols-outlined thermometer">
+              thermometer
+            </span>
+            <h2 class="title5">
+              {{ Math.round(listFavorite.responseWeather.main.temp) }}ºC
+            </h2>
+          </div>
+        </div>
+        <div class="next-days">
+          <div
+            class="next-days-individual"
+            v-for="(responseWeatherDay, i) in listFavorite.responseWeatherDays"
+            :key="i"
+          >
+            <h2 class="title5 number-day">
+              {{ responseWeatherDay.dt | moment("ddd DD") }}
+            </h2>
+            <img
+              class="city-icon"
+              :src="
+                'http://openweathermap.org/img/wn/' +
+                  responseWeatherDay.weather[0].icon +
+                  '@2x.png'
+              "
+              alt=""
+            />
+            <div class="temperature-days">
+              <span class="material-symbols-outlined thermometer">
+                thermometer
+              </span>
+              <h2 class="title5">
+                {{ Math.round(responseWeatherDay.temp.day) }}
+              </h2>
+            </div>
+          </div>
         </div>
       </div>
     </div>
@@ -61,7 +93,7 @@ export default {
     listFavorites: {},
     showAlert: "",
     messageAlert: "",
-    colorAlert: ""
+    colorAlert: "",
   }),
   mounted() {
     this.listFavorites = JSON.parse(localStorage.getItem("favorite"));
@@ -70,7 +102,8 @@ export default {
     deletecity(data) {
       var a = JSON.parse(localStorage.getItem("favorite") || "[]");
       var filtered = a.filter(function(el) {
-        return el.name != data.name;
+        console.log(el.responseWeather.name)
+        return el.responseWeather.name != data.name;
       });
       localStorage.setItem("favorite", JSON.stringify(filtered));
       this.listFavorites = JSON.parse(localStorage.getItem("favorite"));
@@ -79,8 +112,8 @@ export default {
       this.colorAlert = "#7ecd81";
       this.showAlert = true;
       setTimeout(() => (this.showAlert = false), 2000);
-    }
-  }
+    },
+  },
 };
 </script>
 <style scoped>
@@ -135,5 +168,29 @@ export default {
   position: absolute;
   top: 24px;
   right: 24px;
+  z-index: 3;
+}
+.next-days {
+ background: #ffffff61;
+ border-radius: 10px;
+}
+.next-days-individual {
+  display: flex;
+  justify-content: center;
+}
+.next-days-individual .number-day {
+  margin: auto 8px auto auto;
+}
+.next-days-individual .number-day {
+  margin: auto 8px auto auto;
+}
+.next-days-individual .city-icon{
+  width: 50px;
+  height: 50px;
+}
+.next-days-individual .temperature-days {
+  margin: auto auto auto 8px;
+  display: flex;
+  justify-content: center;
 }
 </style>
