@@ -1,5 +1,4 @@
 <div align="center">
-    <img src="/Users/jesus/Desktop/Jesús/weather/public/favicon_io/apple-touch-icon.png" alt="Logo" width="80" height="80">
 
   <h3 align="center">Weather app</h3>
 
@@ -10,7 +9,6 @@
 
 ## About The Project
 <br><br>
-<img src="/Users/jesus/Desktop/Jesús/weather/public/Home.png" alt="Logo" style="margin:0 auto" width="auto" height="500">
 <br><br>
 Application in which you can check the current weather in any city in the world and the next days.
 You can add cities to favorites and check them without internet.
