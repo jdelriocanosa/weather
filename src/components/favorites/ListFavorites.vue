@@ -93,7 +93,7 @@ export default {
     listFavorites: {},
     showAlert: "",
     messageAlert: "",
-    colorAlert: "",
+    colorAlert: ""
   }),
   mounted() {
     this.listFavorites = JSON.parse(localStorage.getItem("favorite"));
@@ -102,7 +102,6 @@ export default {
     deletecity(data) {
       var a = JSON.parse(localStorage.getItem("favorite") || "[]");
       var filtered = a.filter(function(el) {
-        console.log(el.responseWeather.name)
         return el.responseWeather.name != data.name;
       });
       localStorage.setItem("favorite", JSON.stringify(filtered));
@@ -112,8 +111,8 @@ export default {
       this.colorAlert = "#7ecd81";
       this.showAlert = true;
       setTimeout(() => (this.showAlert = false), 2000);
-    },
-  },
+    }
+  }
 };
 </script>
 <style scoped>
@@ -171,8 +170,8 @@ export default {
   z-index: 3;
 }
 .next-days {
- background: #ffffff61;
- border-radius: 10px;
+  background: #ffffff61;
+  border-radius: 10px;
 }
 .next-days-individual {
   display: flex;
@@ -184,7 +183,7 @@ export default {
 .next-days-individual .number-day {
   margin: auto 8px auto auto;
 }
-.next-days-individual .city-icon{
+.next-days-individual .city-icon {
   width: 50px;
   height: 50px;
 }

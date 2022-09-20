@@ -121,13 +121,15 @@ export default {
   methods: {
     saveFavorite() {
       var a = JSON.parse(localStorage.getItem("favorite") || "[]");
-      var index = a.findIndex(x => x.responseWeather.name == this.responseWeather.name);
+      var index = a.findIndex(
+        x => x.responseWeather.name == this.responseWeather.name
+      );
       if (index === -1) {
-        let b = {}
-        let c = []
-        b.responseWeather = this.responseWeather
-        b.responseWeatherDays = this.responseWeatherDays
-        c = b
+        let b = {};
+        let c = [];
+        b.responseWeather = this.responseWeather;
+        b.responseWeatherDays = this.responseWeatherDays;
+        c = b;
         a.push(c);
         this.messageAlert = "Guardado";
         this.typeAlert = "success";
